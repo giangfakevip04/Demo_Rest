@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+
+</head>
+<body>
+
+<header></header>
+
+<h1> List of Users</h1>
+<p>Hiển thị danh sách Users trên hệ thống</p>
+<!--cú pháp ejs để đọc giá trị -->
+<!-- hiển thị biến name-->
+<h2 style="background: aqua; font-size: large"><%= name %></h2>
+
+<% for(var i = 0; i < data.length;i++){ %>
+    <div>
+        <%= data[i].id %>
+    </div>
+    <div>
+        <%= data[i].name %>
+    </div>
+    <div>
+        <%= data[i].address %>
+    </div>
+    <div>
+        <%= data[i].phone %>
+    </div>
+    <a href="/deleteUser?id=<%= data[i].id %>">Delete</a>
+    <a href="/updateUser?id=<%= data[i].id %>">Update</a>
+    <hr>
+<% } %>
+
+<footer></footer>
+</body>
+
+
+</html>

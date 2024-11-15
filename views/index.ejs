@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<a href="/getAllUser">Get All User</a>
+<a href="/getOneUser">Get a User</a>
+<a href="/displayUsers">Display User</a>
+
+<!-- Form cho phép nhập giá trị và gửi vào request tên: createUser -->
+<hr>
+<% if (message) { %>
+    <h1><%= message %></h1>
+<% } %>
+<form action="/createUser" method="post"
+      enctype="application/x-www-form-urlencoded">
+    <div style="flex-direction: column; flex: auto">
+        <input name="name" placeholder="Enter your name...">
+        <input name="age" placeholder="Enter your age...">
+        <button type="submit">Create User</button>
+    </div>
+
+</form>
+</body>
+</html>
