@@ -50,7 +50,12 @@ router.get('/', function (req, res, next) {
 router.get('/deleteUser', function (req, res) {
     const id = req.query.id
     Student.deleteOne({_id: id}).then(result => {
-        res.redirect('/displayUsers')
+        const ketqua  ={
+            errorCode: 200,
+            message: "Delete user sucessfully"
+        }
+        res.send(ketqua)
+        // res.redirect('/displayUsers')
     })
 })
 
@@ -87,21 +92,21 @@ router.get('/getOneUser', function (req, res, next) {
     res.send(jsonData);
 })
 router.get('/displayUsers', function (req, res, next) {
-    // var jsonData = [{
-    //     id: 1,
-    //     name: "Nguyen Van A",
-    //     age: 20
-    // },
-    //     {
-    //         id: 2,
-    //         name: "Nguyen Van B",
-    //         age: 20
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "Nguyen Van C",
-    //         age: 20
-    //     }]
+    var jsonData = [{
+        id: 1,
+        name: "Nguyen Van A",
+        age: 20
+    },
+        {
+            id: 2,
+            name: "Nguyen Van B",
+            age: 20
+        },
+        {
+            id: 3,
+            name: "Nguyen Van C",
+            age: 20
+        }]
 
     Student.find({}).then(jsonData => {
         res.render("users", {name: "Hac co lo", data: jsonData})
