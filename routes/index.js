@@ -50,7 +50,7 @@ router.get('/', function (req, res, next) {
 router.get('/deleteUser', function (req, res) {
     const id = req.query.id
     Student.deleteOne({_id: id}).then(result => {
-        const ketqua  ={
+        const ketqua = {
             errorCode: 200,
             message: "Delete user sucessfully"
         }
@@ -92,21 +92,21 @@ router.get('/getOneUser', function (req, res, next) {
     res.send(jsonData);
 })
 router.get('/displayUsers', function (req, res, next) {
-    var jsonData = [{
-        id: 1,
-        name: "Nguyen Van A",
-        age: 20
-    },
-        {
-            id: 2,
-            name: "Nguyen Van B",
-            age: 20
-        },
-        {
-            id: 3,
-            name: "Nguyen Van C",
-            age: 20
-        }]
+    // var jsonData = [{
+    //     id: 1,
+    //     name: "Nguyen Van A",
+    //     age: 20
+    // },
+    //     {
+    //         id: 2,
+    //         name: "Nguyen Van B",
+    //         age: 20
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "Nguyen Van C",
+    //         age: 20
+    //     }]
 
     Student.find({}).then(jsonData => {
         res.render("users", {name: "Hac co lo", data: jsonData})
@@ -158,7 +158,20 @@ router.post('/createUser', function (req, res, next) {
     student.save().then(result => {
         // res.send(result)
         // res.render('index', {title: 'Created User', message: "Create user successfully!"})
-        res.redirect('/displayUsers')
+        // res.redirect('/displayUsers')
+        const ketqua = {
+            errorCode: 200,
+            message: "Create user successfully",
+        }
+        res.send(ketqua)
+    }).catch(err => {
+        console.log(err)
+        const ketqua = {
+            errorCode: 500,
+            message: "Create user fail",
+        }
+
+        res.send(ketqua)
     })
 
 })
