@@ -24,8 +24,17 @@ const studentSchema = new mongoose.Schema({
 })
 // Model: là khái niệm để thao tác với Collection là Student
 const Student = mongoose.model('Student', studentSchema)
+// Lazy Load trên ExpressJS và áp dụng trên Android
+// Lazy Load: load dữ liệu từ server về từng phần thay vì toàn bộ]
+// test thử: /getDatabase?page=1&limit=10: trang 1: 10 phần tử
 router.get('/getDatabase', function (req, res) {
-    Student.find({}).then(result => {
+    const page = req.query.page | 1 // số trang tính từ 1
+    const limit = req.query.limit | 10 //số phần tử cần lấy trên 1 lần request
+    console.log("Page : " + page)
+    console.log("Limit: " + limit)
+    // tính toán ra số phần tử muốn bỏ qua
+    const skip = (page - 1) * limit;
+    Student.find({}).skip(skip).limit(limit).then(result => {
         res.send(result)
     })
 })
